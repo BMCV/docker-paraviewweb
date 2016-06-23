@@ -27,3 +27,9 @@ Usage
  Variable            | Use
  ------------------- | ---
  `DATASET_HID`           | Path of file relative to /import which is loaded on startup
+
+Works best with
+=====================
+
+ * [Galaxy Image Analysis Tools](https://github.com/ThomasWollmann/galaxy-image-analysis)
+ * [Galaxy Imaging](https://github.com/bgruening/docker-galaxy-imaging)

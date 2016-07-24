@@ -1,27 +1,17 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
 MAINTAINER Thomas Wollmann <thomas.wollmann@bioquant.uni-heidelberg.de>
 
 RUN apt-get -q update && \
     apt-get -q -y upgrade && \
-    apt-get -q -y install build-essential software-properties-common && \
-    apt-get -q -y install curl wget git python python-dev && \
+    apt-get -q -y install build-essential software-properties-common \
+    curl wget git python python-dev make libosmesa6-dev libglu1-mesa-dev && \
     curl -s https://bootstrap.pypa.io/get-pip.py | python2
 
-# Install cmake
-RUN wget http://www.cmake.org/files/v3.5/cmake-3.5.2.tar.gz && \
-    tar -xvzf cmake-3.5.2.tar.gz && \
-    cd cmake-3.5.2/ && \
-    ./configure && \
-    make  && \
-    make install && \
-    cd .. && \
-    rm -R cmake-3.5.2 && \
-    rm -R cmake-3.5.2.tar.gz
+RUN apt-get -q -y install cmake
 
 # Compile 
 RUN mkdir -p /root/build && cd /root/build && \
-    apt-get -q -y install cmake libosmesa6-dev libglu1-mesa-dev && \
     git clone git://paraview.org/ParaView.git pv-git && cd pv-git && \
     git checkout v5.1.0 && git submodule init && git submodule update && \
 
@@ -43,9 +33,9 @@ RUN mkdir -p /root/build && cd /root/build && \
     make -j4 && make install && \
     cd / && rm -rf /root/build
 
-RUN mkdir /import
+RUN mkdir /input
 RUN mkdir /export
-WORKDIR /import
+WORKDIR /input
 
 ENV DEBUG=false \
     GALAXY_WEB_PORT=10000 \

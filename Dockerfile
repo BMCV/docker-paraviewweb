@@ -34,7 +34,7 @@ RUN mkdir -p /root/build && cd /root/build && \
     cd / && rm -rf /root/build
 
 RUN mkdir /input
-RUN mkdir /export
+RUN mkdir /output
 WORKDIR /input
 
 ENV DEBUG=false \

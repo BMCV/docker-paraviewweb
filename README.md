@@ -15,7 +15,7 @@ Usage
  ```
  The build process can take some time, but if finished you can run your container with:
  ```bash
-  docker run -p 8777:8777 -v /home/user/paraviewweb/import/:/import/ -v /home/user/paraviewweb/export/:/export/ paraviewweb
+  docker run -p 8777:8777 -v /home/user/paraviewweb/input/:/input/ -v /home/user/paraviewweb/output/:/output/ paraviewweb
  ```
  and you will have a running [ParaViewWeb](http://paraviewweb.kitware.com/) instance on ``http://localhost:8777/apps/Visualizer``.
 

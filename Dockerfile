@@ -33,6 +33,12 @@ RUN mkdir -p /root/build && cd /root/build && \
     make -j4 && make install && \
     cd / && rm -rf /root/build
 
+# Proxy
+RUN apt-get -q -y install nginx
+ADD nginx.conf /etc/nginx/sites-available/paraviewweb
+RUN ln -s /etc/nginx/sites-available/paraviewweb /etc/nginx/sites-enabled/paraviewweb && \
+    rm /etc/nginx/sites-enabled/default
+
 RUN mkdir /input
 RUN mkdir /output
 WORKDIR /input

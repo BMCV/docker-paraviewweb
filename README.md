@@ -26,7 +26,7 @@ Usage
 
  Variable            | Use
  ------------------- | ---
- `DATASET_HID`           | Path of file relative to /import which is loaded on startup
+ `DATASET_HID`           | Path of file relative to /input which is loaded on startup
 
 Works best with
 =====================

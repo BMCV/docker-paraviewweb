@@ -4,6 +4,8 @@ Docker ParaViewWeb Container
 
 This [ParaViewWeb](http://paraviewweb.kitware.com/) Docker container is used by the [Galaxy Project](https://galaxyproject.org/).
 
+![screenshot](screenshot.png)
+
 Usage
 =====
 

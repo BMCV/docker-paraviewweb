@@ -8,7 +8,7 @@ RUN apt-get -q update && \
     curl wget git python python-dev make libosmesa6-dev libglu1-mesa-dev && \
     curl -s https://bootstrap.pypa.io/get-pip.py | python2
 
-RUN apt-get -q -y install cmake libhdf5-dev protobuf-compiler libfreetype6-dev libpugixml-dev zlib1g-dev libpng-dev libjpeg-dev libtiff5-dev
+RUN apt-get -q -y install cmake libhdf5-dev protobuf-compiler libgl2ps-dev libfreetype6-dev libpugixml-dev zlib1g-dev libpng-dev libjpeg-dev libtiff5-dev
 
 # Compile 
 RUN mkdir -p /root/build && cd /root/build && \

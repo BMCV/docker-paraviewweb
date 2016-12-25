@@ -1,3 +1,6 @@
+
+[![Build Status](https://travis-ci.org/BMCV/docker-paraviewweb.svg?branch=master)](https://travis-ci.org/BMCV/docker-paraviewweb)
+
 Docker ParaViewWeb Container
 ========================
 

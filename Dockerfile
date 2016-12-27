@@ -8,12 +8,13 @@ RUN apt-get -q update && \
     curl wget git python python-dev make libosmesa6-dev libglu1-mesa-dev && \
     curl -s https://bootstrap.pypa.io/get-pip.py | python2
 
-RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev libxml2-dev zlib1g-dev libpugixml-dev libogg-dev libtheora-dev python-twisted python-autobahn expat libfreetype6-dev python-zope.interface libgl2ps-dev liblz4-dev libprotobuf-dev python-protobuf
+RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev libxml2-dev zlib1g-dev libpugixml-dev libogg-dev libtheora-dev python-twisted python-autobahn expat libfreetype6-dev python-zope.interface libgl2ps-dev liblz4-dev libprotobuf-dev python-protobuf protobuf-compiler
 
 # libprotobuf-dev liblz4-dev libgl2ps-dev  libnetcdf-dev
 
 #        -D VTK_USE_SYSTEM_JSONCPP:BOOL=OFF \
 #	-D VTK_USE_SYSTEM_NETCDF=OFF \
+	-D PARAVIEW_BUILD_PLUGIN_*:BOOL=OFF \
 
 #protobuf
 #verdict
@@ -32,7 +33,6 @@ RUN mkdir -p /root/build && cd /root/build && \
         -D BUILD_TESTING:BOOL=OFF \
         -D BUILD_DOCUMENTATION:BOOL=OFF \
 	-D BUILD_EXAMPLES:BOOL=OFF \
-	-D PLUGIN_*:BOOL=OFF \
 	-D PARAVIEW_BUILD_QT_GUI:BOOL=OFF \
         -D PARAVIEW_ENABLE_PYTHON:BOOL=ON \
         -D PARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=OFF \

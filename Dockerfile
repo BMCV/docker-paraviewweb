@@ -8,7 +8,17 @@ RUN apt-get -q update && \
     curl wget git python python-dev make libosmesa6-dev libglu1-mesa-dev && \
     curl -s https://bootstrap.pypa.io/get-pip.py | python2
 
-RUN apt-get -q -y install cmake libhdf5-dev libprotobuf-dev liblz4-dev libgl2ps-dev libogg-dev libtheora-dev libfreetype6-dev libxml2-dev libpugixml-dev zlib1g-dev libpng-dev libjpeg-dev libtiff5-dev
+RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev libxml2-dev zlib1g-dev 
+# libprotobuf-dev liblz4-dev libgl2ps-dev libogg-dev libtheora-dev libfreetype6-dev  libpugixml-dev 
+
+#        -D VTK_USE_SYSTEM_LIBRARIES:BOOL=ON \
+#        -D VTK_USE_SYSTEM_HDF5=ON \
+#        -D VTK_USE_SYSTEM_AUTOBAHN:BOOL=ON \
+#        -D VTK_USE_SYSTEM_JSONCPP:BOOL=OFF \
+#	-D VTK_USE_SYSTEM_NETCDF=OFF \
+#	-D VTK_USE_SYSTEM_PROTOBUF:BOOL=OFF \
+#	-D VTK_USE_SYSTEM_PUGIXML:BOOL=ON \
+#	-D VTK_USE_SYSTEM_TWISTED:BOOL=ON \
 
 # Compile 
 RUN mkdir -p /root/build && cd /root/build && \
@@ -29,17 +39,9 @@ RUN mkdir -p /root/build && cd /root/build && \
         -D OPENGL_glu_LIBRARY=/usr/lib/x86_64-linux-gnu/libGLU.so \
         -D VTK_USE_X:BOOL=OFF \
 	-D VTK_USE_OFFSCREEN:BOOL=ON \
-        -D VTK_USE_SYSTEM_LIBRARIES:BOOL=ON \
-        -D VTK_USE_SYSTEM_HDF5=ON \
-        -D VTK_USE_SYSTEM_AUTOBAHN:BOOL=ON \
-        -D VTK_USE_SYSTEM_JSONCPP:BOOL=OFF \
-	-D VTK_USE_SYSTEM_NETCDF=OFF \
-	-D VTK_USE_SYSTEM_PROTOBUF:BOOL=OFF \
-	-D VTK_USE_SYSTEM_PUGIXML:BOOL=ON \
-	-D VTK_USE_SYSTEM_TWISTED:BOOL=ON \
-	-D VTK_USE_SYSTEM_XDMF2=OFF \
-	-D VTK_USE_SYSTEM_ZOPE:BOOL=ON \
+	-D VTK_USE_SYSTEM_HDF5=ON \
 	-D VTK_USE_SYSTEM_ZLIB:BOOL=ON \
+	-D VTK_USE_SYSTEM_XDMF2=OFF \
 	-D VTK_USE_SYSTEM_JPEG:BOOL=ON \
 	-D VTK_USE_SYSTEM_PNG:BOOL=ON \
 	-D VTK_USE_SYSTEM_TIFF:BOOL=ON \

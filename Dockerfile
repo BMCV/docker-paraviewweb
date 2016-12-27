@@ -8,20 +8,21 @@ RUN apt-get -q update && \
     curl wget git python python-dev make libosmesa6-dev libglu1-mesa-dev && \
     curl -s https://bootstrap.pypa.io/get-pip.py | python2
 
-RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev libxml2-dev zlib1g-dev libpugixml-dev libogg-dev libtheora-dev libxdmf-dev python-twisted python-autobahn expat
+RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev libxml2-dev zlib1g-dev libpugixml-dev libogg-dev libtheora-dev libxdmf-dev python-twisted python-autobahn expat libfreetype6-dev python-zope.interface libgl2ps-dev libnetcdf-dev
 
-# libprotobuf-dev liblz4-dev libgl2ps-dev libfreetype6-dev  libpugixml-dev 
+# libprotobuf-dev liblz4-dev libgl2ps-dev 
 
 #        -D VTK_USE_SYSTEM_LIBRARIES:BOOL=ON \
 #        -D VTK_USE_SYSTEM_JSONCPP:BOOL=OFF \
 #	-D VTK_USE_SYSTEM_NETCDF=OFF \
 #	-D VTK_USE_SYSTEM_PROTOBUF:BOOL=OFF \
-#netcdf
+
 #lz4
 #protobuf
 #verdict
-#zope
 #exodusII
+# KWSys
+# alglib
 
 # Compile 
 RUN mkdir -p /root/build && cd /root/build && \
@@ -48,12 +49,16 @@ RUN mkdir -p /root/build && cd /root/build && \
 	-D VTK_USE_SYSTEM_PNG:BOOL=ON \
 	-D VTK_USE_SYSTEM_TIFF:BOOL=ON \
 	-D VTK_USE_SYSTEM_OGGTHEORA=ON \
+	-D VTK_USE_SYSTEM_NETCDF=ON \
 	-D VTK_USE_SYSTEM_PUGIXML:BOOL=ON \
-	-D VTK_USE_SYSTEM_LIBXML:BOOL=ON \
+	-D VTK_USE_SYSTEM_LIBXML2:BOOL=ON \
+	-D VTK_USE_SYSTEM_FREETYPE:BOOL=ON \
 	-D VTK_USE_SYSTEM_TWISTED:BOOL=ON \
         -D VTK_USE_SYSTEM_AUTOBAHN:BOOL=ON \
+	-D VTK_USE_SYSTEM_GL2PS:BOOL=ON \
 	-D VTK_USE_SYSTEM_EXPAT:BOOL=ON \
 	-D VTK_USE_SYSTEM_XDMF:BOOL=ON \
+	-D VTK_USE_SYSTEM_ZOPE:BOOL=ON \
         -D VTK_OPENGL_HAS_OSMESA:BOOL=ON \
         -D OSMESA_INCLUDE_DIR=/usr/include \
         -D OSMESA_LIBRARY=/usr/lib/x86_64-linux-gnu/libOSMesa.so \

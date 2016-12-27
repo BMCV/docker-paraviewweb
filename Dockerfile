@@ -13,8 +13,8 @@ RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev 
 # libprotobuf-dev liblz4-dev libgl2ps-dev  libnetcdf-dev
 
 #        -D VTK_USE_SYSTEM_JSONCPP:BOOL=OFF \
-#	-D VTK_USE_SYSTEM_NETCDF=OFF \
-	-D PARAVIEW_BUILD_PLUGIN_*:BOOL=OFF \
+#	-D VTK_USE_SYSTEM_NETCDF=OFF \	
+#         -D PARAVIEW_BUILD_PLUGIN_*:BOOL=OFF \
 
 #protobuf
 #verdict

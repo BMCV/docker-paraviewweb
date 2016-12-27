@@ -28,9 +28,7 @@ RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev 
 
 # Compile 
 RUN mkdir -p /root/build && cd /root/build && \
-    git clone git://paraview.org/ParaView.git pv-git && cd pv-git && \
-    git checkout v5.1.0 && git submodule init && git submodule update && \
-
+    git clone -b v5.1.0 --single-branch git://paraview.org/ParaView.git pv-git && cd pv-git && git submodule init && git submodule update && \
     mkdir -p /root/build/pv-bin && cd /root/build/pv-bin && \
     cmake \
         -D CMAKE_BUILD_TYPE=Release \
@@ -40,7 +38,6 @@ RUN mkdir -p /root/build && cd /root/build && \
 	-D PLUGIN_*:BOOL=OFF \
 	-D PARAVIEW_BUILD_QT_GUI:BOOL=OFF \
         -D PARAVIEW_ENABLE_PYTHON:BOOL=ON \
-	-D PARAVIEW_ENABLE_CATALYST:BOOL:OFF \
         -D PARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=OFF \
         -D OPENGL_INCLUDE_DIR=/usr/include \
         -D OPENGL_gl_LIBRARY="" \

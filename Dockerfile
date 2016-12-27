@@ -45,7 +45,6 @@ RUN mkdir -p /root/build && cd /root/build && \
         -D OPENGL_INCLUDE_DIR=/usr/include \
         -D OPENGL_gl_LIBRARY="" \
         -D OPENGL_glu_LIBRARY=/usr/lib/x86_64-linux-gnu/libGLU.so \
-	-D VTK_Group_StandAlone:BOOL=OFF \
         -D VTK_USE_X:BOOL=OFF \
 	-D VTK_USE_OFFSCREEN:BOOL=ON \
 	-D VTK_USE_SYSTEM_HDF5=ON \

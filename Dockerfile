@@ -8,9 +8,9 @@ RUN apt-get -q update && \
     curl wget git python python-dev make libosmesa6-dev libglu1-mesa-dev && \
     curl -s https://bootstrap.pypa.io/get-pip.py | python2
 
-RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev libxml2-dev zlib1g-dev libpugixml-dev libogg-dev libtheora-dev libxdmf-dev python-twisted python-autobahn expat libfreetype6-dev python-zope.interface libgl2ps-dev libnetcdf-dev
+RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev libxml2-dev zlib1g-dev libpugixml-dev libogg-dev libtheora-dev libxdmf-dev python-twisted python-autobahn expat libfreetype6-dev python-zope.interface libgl2ps-dev
 
-# libprotobuf-dev liblz4-dev libgl2ps-dev 
+# libprotobuf-dev liblz4-dev libgl2ps-dev  libnetcdf-dev
 
 #        -D VTK_USE_SYSTEM_LIBRARIES:BOOL=ON \
 #        -D VTK_USE_SYSTEM_JSONCPP:BOOL=OFF \
@@ -49,7 +49,6 @@ RUN mkdir -p /root/build && cd /root/build && \
 	-D VTK_USE_SYSTEM_PNG:BOOL=ON \
 	-D VTK_USE_SYSTEM_TIFF:BOOL=ON \
 	-D VTK_USE_SYSTEM_OGGTHEORA=ON \
-	-D VTK_USE_SYSTEM_NETCDF=ON \
 	-D VTK_USE_SYSTEM_PUGIXML:BOOL=ON \
 	-D VTK_USE_SYSTEM_LIBXML2:BOOL=ON \
 	-D VTK_USE_SYSTEM_FREETYPE:BOOL=ON \

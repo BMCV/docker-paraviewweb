@@ -8,7 +8,7 @@ RUN apt-get -q update && \
     curl wget git python python-dev make libosmesa6-dev libglu1-mesa-dev && \
     curl -s https://bootstrap.pypa.io/get-pip.py | python2
 
-RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev libxml2-dev zlib1g-dev libpugixml-dev libogg-dev libtheora-dev libxdmf-dev python-twisted python-autobahn expat libfreetype6-dev python-zope.interface libgl2ps-dev
+RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev libxml2-dev zlib1g-dev libpugixml-dev libogg-dev libtheora-dev python-twisted python-autobahn expat libfreetype6-dev python-zope.interface libgl2ps-dev
 
 # libprotobuf-dev liblz4-dev libgl2ps-dev  libnetcdf-dev
 
@@ -23,6 +23,8 @@ RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev 
 #exodusII
 # KWSys
 # alglib
+# netcdf
+# VPIC
 
 # Compile 
 RUN mkdir -p /root/build && cd /root/build && \
@@ -41,6 +43,7 @@ RUN mkdir -p /root/build && cd /root/build && \
         -D OPENGL_INCLUDE_DIR=/usr/include \
         -D OPENGL_gl_LIBRARY="" \
         -D OPENGL_glu_LIBRARY=/usr/lib/x86_64-linux-gnu/libGLU.so \
+	-D VTK_Group_StandAlone:BOOL=OFF \
         -D VTK_USE_X:BOOL=OFF \
 	-D VTK_USE_OFFSCREEN:BOOL=ON \
 	-D VTK_USE_SYSTEM_HDF5=ON \
@@ -56,7 +59,6 @@ RUN mkdir -p /root/build && cd /root/build && \
         -D VTK_USE_SYSTEM_AUTOBAHN:BOOL=ON \
 	-D VTK_USE_SYSTEM_GL2PS:BOOL=ON \
 	-D VTK_USE_SYSTEM_EXPAT:BOOL=ON \
-	-D VTK_USE_SYSTEM_XDMF:BOOL=ON \
 	-D VTK_USE_SYSTEM_ZOPE:BOOL=ON \
         -D VTK_OPENGL_HAS_OSMESA:BOOL=ON \
         -D OSMESA_INCLUDE_DIR=/usr/include \

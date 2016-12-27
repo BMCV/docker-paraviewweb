@@ -1,5 +1,7 @@
 
 [![Build Status](https://travis-ci.org/BMCV/docker-paraviewweb.svg?branch=master)](https://travis-ci.org/BMCV/docker-paraviewweb)
+[![Docker Pulls](https://img.shields.io/docker/pulls/bmcv/galaxy-paraviewweb.svg)](https://hub.docker.com/r/bmcv/galaxy-paraviewweb/) 
+[![Docker Stars](https://img.shields.io/docker/stars/bmcv/galaxy-paraviewweb.svg)](https://hub.docker.com/r/bmcv/galaxy-paraviewweb/) 
 
 Docker ParaViewWeb Container
 ========================

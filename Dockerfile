@@ -4,16 +4,16 @@ MAINTAINER Thomas Wollmann <thomas.wollmann@bioquant.uni-heidelberg.de>
 
 RUN apt-get -q update && \
     apt-get -q -y install build-essential software-properties-common \
-    curl wget git python python-dev make libosmesa6-dev libglu1-mesa-dev && \
+    curl git python python-dev make libosmesa6-dev libglu1-mesa-dev && \
     curl -s https://bootstrap.pypa.io/get-pip.py | python2
 
 RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev libxml2-dev zlib1g-dev libpugixml-dev libogg-dev libtheora-dev python-twisted python-autobahn expat libfreetype6-dev python-zope.interface libgl2ps-dev liblz4-dev libprotobuf-dev python-protobuf protobuf-compiler
 
 # Compile 
 RUN mkdir -p /root/build && cd /root/build && \
-    git clone -b v5.1.0 --single-branch git://paraview.org/ParaView.git pv-git && cd pv-git && git submodule init && git submodule update && \
+    curl "http://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v5.2&type=source&os=all&downloadFile=ParaView-v5.2.0.tar.gz | tar xz && \
+    rm -R ParaView-v5.2.0/Plugins/* && \
     mkdir -p /root/build/pv-bin && cd /root/build/pv-bin && \
-    rm -R Plugins/* && \
     cmake \
         -D CMAKE_BUILD_TYPE=Release \
         -D BUILD_TESTING:BOOL=OFF \
@@ -47,9 +47,9 @@ RUN mkdir -p /root/build && cd /root/build && \
         -D VTK_OPENGL_HAS_OSMESA:BOOL=ON \
         -D OSMESA_INCLUDE_DIR=/usr/include \
         -D OSMESA_LIBRARY=/usr/lib/x86_64-linux-gnu/libOSMesa.so \
-        ../pv-git && \
+        ../ParaView-v5.2.0 && \
     make -j4 && make install && \
-    cd / && rm -rf /root/build
+    rm -rf ParaView-v5.2.0 && rm -rf /root/build
     
 # Proxy
 RUN apt-get -q -y install nginx

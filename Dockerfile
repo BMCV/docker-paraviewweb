@@ -13,7 +13,7 @@ RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev 
 RUN mkdir -p /root/build && cd /root/build && \
     git clone -b v5.1.0 --single-branch git://paraview.org/ParaView.git pv-git && cd pv-git && git submodule init && git submodule update && \
     mkdir -p /root/build/pv-bin && cd /root/build/pv-bin && \
-    rm -R Plugins/* %% \
+    rm -R Plugins/* && \
     cmake \
         -D CMAKE_BUILD_TYPE=Release \
         -D BUILD_TESTING:BOOL=OFF \

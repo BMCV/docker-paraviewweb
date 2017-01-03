@@ -11,7 +11,7 @@ RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev 
 
 # Compile 
 RUN mkdir -p /root/build && cd /root/build && \
-    curl "http://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v5.2&type=source&os=all&downloadFile=ParaView-v5.2.0.tar.gz | tar xz && \
+    curl "http://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v5.2&type=source&os=all&downloadFile=ParaView-v5.2.0.tar.gz" | tar xz && \
     rm -R ParaView-v5.2.0/Plugins/* && \
     mkdir -p /root/build/pv-bin && cd /root/build/pv-bin && \
     cmake \

@@ -1,9 +1,8 @@
-FROM ubuntu:16.04
+FROM ubuntu:16.10
 
 MAINTAINER Thomas Wollmann <thomas.wollmann@bioquant.uni-heidelberg.de>
 
 RUN apt-get -q update && \
-    apt-get -q -y upgrade && \
     apt-get -q -y install build-essential software-properties-common \
     curl wget git python python-dev make libosmesa6-dev libglu1-mesa-dev && \
     curl -s https://bootstrap.pypa.io/get-pip.py | python2

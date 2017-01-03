@@ -9,20 +9,6 @@ RUN apt-get -q update && \
 
 RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev libxml2-dev zlib1g-dev libpugixml-dev libogg-dev libtheora-dev python-twisted python-autobahn expat libfreetype6-dev python-zope.interface libgl2ps-dev liblz4-dev libprotobuf-dev python-protobuf protobuf-compiler libexodusii-dev
 
-# libprotobuf-dev liblz4-dev libgl2ps-dev  libnetcdf-dev
-
-#        -D VTK_USE_SYSTEM_JSONCPP:BOOL=OFF \
-#	-D VTK_USE_SYSTEM_NETCDF=OFF \	
-#         -D PARAVIEW_BUILD_PLUGIN_*:BOOL=OFF \
-
-#protobuf
-#verdict
-#exodusII
-# KWSys
-# alglib
-# netcdf
-# VPIC
-
 # Compile 
 RUN mkdir -p /root/build && cd /root/build && \
     git clone -b v5.1.0 --single-branch git://paraview.org/ParaView.git pv-git && cd pv-git && git submodule init && git submodule update && \
@@ -59,7 +45,7 @@ RUN mkdir -p /root/build && cd /root/build && \
 	-D VTK_USE_SYSTEM_GL2PS:BOOL=ON \
 	-D VTK_USE_SYSTEM_EXPAT:BOOL=ON \
 	-D VTK_USE_SYSTEM_ZOPE:BOOL=ON \
-	-D VTK_USE_SYSTEM_EXODUS:BOOL=ON \
+	-D VTK_USE_SYSTEM_EXODUSII:BOOL=ON \
         -D VTK_OPENGL_HAS_OSMESA:BOOL=ON \
         -D OSMESA_INCLUDE_DIR=/usr/include \
         -D OSMESA_LIBRARY=/usr/lib/x86_64-linux-gnu/libOSMesa.so \

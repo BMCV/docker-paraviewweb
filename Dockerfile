@@ -7,7 +7,7 @@ RUN apt-get -q update && \
     curl git python python-dev make libosmesa6-dev libglu1-mesa-dev && \
     curl -s https://bootstrap.pypa.io/get-pip.py | python2
 
-RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev libxml2-dev zlib1g-dev libpugixml-dev libogg-dev libtheora-dev python-twisted python-autobahn expat libfreetype6-dev python-zope.interface liblz4-dev libprotobuf-dev python-protobuf protobuf-compiler
+RUN apt-get -q -y install cmake
 
 ENV PARAVIEW_VERSION=5.2.0 \
     PARAVIEW_VERSHORT=5.2
@@ -25,28 +25,9 @@ RUN mkdir -p /root/build && cd /root/build && \
 	-D PARAVIEW_BUILD_QT_GUI:BOOL=OFF \
         -D PARAVIEW_ENABLE_PYTHON:BOOL=ON \
 	-D PARAVIEW_ENABLE_WEB:BOOL=ON \
-	-D PARAVIEW_ENABLE_CATALYST:BOOL=OFF \
         -D PARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=OFF \
-        -D OPENGL_INCLUDE_DIR=/usr/include \
-        -D OPENGL_gl_LIBRARY="" \
-        -D OPENGL_glu_LIBRARY=/usr/lib/x86_64-linux-gnu/libGLU.so \
         -D VTK_USE_X:BOOL=OFF \
 	-D VTK_USE_OFFSCREEN:BOOL=ON \
-	-D VTK_USE_SYSTEM_PROTOBUF:BOOL=ON \
-	-D VTK_USE_SYSTEM_HDF5:BOOL=ON \
-	-D VTK_USE_SYSTEM_ZLIB:BOOL=ON \
-	-D VTK_USE_SYSTEM_JPEG:BOOL=ON \
-	-D VTK_USE_SYSTEM_PNG:BOOL=ON \
-	-D VTK_USE_SYSTEM_TIFF:BOOL=ON \
-	-D VTK_USE_SYSTEM_OGGTHEORA=ON \
-	-D VTK_USE_SYSTEM_PUGIXML:BOOL=ON \
-	-D VTK_USE_SYSTEM_LIBXML2:BOOL=ON \
-	-D VTK_USE_SYSTEM_FREETYPE:BOOL=ON \
-	-D VTK_USE_SYSTEM_TWISTED:BOOL=ON \
-        -D VTK_USE_SYSTEM_AUTOBAHN:BOOL=ON \
-	-D VTK_USE_SYSTEM_GL2PS:BOOL=OFF \
-	-D VTK_USE_SYSTEM_EXPAT:BOOL=ON \
-	-D VTK_USE_SYSTEM_ZOPE:BOOL=ON \
         -D VTK_OPENGL_HAS_OSMESA:BOOL=ON \
         -D OSMESA_INCLUDE_DIR=/usr/include \
         -D OSMESA_LIBRARY=/usr/lib/x86_64-linux-gnu/libOSMesa.so \

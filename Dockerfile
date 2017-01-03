@@ -22,13 +22,11 @@ RUN mkdir -p /root/build && cd /root/build && \
         -D PARAVIEW_ENABLE_PYTHON:BOOL=ON \
 	-D PARAVIEW_ENABLE_WEB:BOOL=ON \
 	-D PARAVIEW_ENABLE_CATALYST:BOOL=OFF \
-	-D PARAVIEW_BUILD_PLUGIN_*=OFF \
         -D PARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=OFF \
         -D OPENGL_INCLUDE_DIR=/usr/include \
         -D OPENGL_gl_LIBRARY="" \
         -D OPENGL_glu_LIBRARY=/usr/lib/x86_64-linux-gnu/libGLU.so \
         -D VTK_USE_X:BOOL=OFF \
-	-D VTK_USE_TK:BOOL=OFF \
 	-D VTK_USE_OFFSCREEN:BOOL=ON \
 	-D VTK_USE_SYSTEM_PROTOBUF:BOOL=ON \
 	-D VTK_USE_SYSTEM_HDF5:BOOL=ON \
@@ -52,7 +50,7 @@ RUN mkdir -p /root/build && cd /root/build && \
         ../pv-git && \
     make -j4 && make install && \
     cd / && rm -rf /root/build
-
+    
 # Proxy
 RUN apt-get -q -y install nginx
 ADD nginx.conf /etc/nginx/sites-available/paraviewweb

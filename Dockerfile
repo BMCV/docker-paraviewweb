@@ -29,30 +29,19 @@ RUN mkdir -p /root/build && cd /root/build && \
     mkdir -p /root/build/pv-bin && cd /root/build/pv-bin && \
     cmake \
         -D CMAKE_BUILD_TYPE=Release \
-	-D VTK_Group_CoProcessing:BOOL=OFF \
-	-D VTK_Group_Imaging:BOOL=OFF \
-	-D VTK_Group_MPI:BOOL=OFF \
-	-D VTK_Group_ParaViewCore:BOOL=OFF \
-	-D VTK_Group_ParaViewQt:BOOL=OFF \
-	-D VTK_Group_ParaViewRendering:BOOL=OFF \
-	-D VTK_Group_Qt:BOOL=OFF \
-	-D VTK_Group_Rendering:BOOL=OFF \
-	-D VTK_Group_StandAlone:BOOL=OFF \
-	-D VTK_Group_Tk:BOOL=OFF \
-	-D VTK_Group_Views:BOOL=OFF \
-	-D VTK_Group_ParaViewPython:BOOL=ON \
         -D BUILD_TESTING:BOOL=OFF \
         -D BUILD_DOCUMENTATION:BOOL=OFF \
 	-D BUILD_EXAMPLES:BOOL=OFF \
 	-D PARAVIEW_BUILD_QT_GUI:BOOL=OFF \
         -D PARAVIEW_ENABLE_PYTHON:BOOL=ON \
 	-D PARAVIEW_ENABLE_WEB:BOOL=ON \
-	-D PARAVIEW_ENABLE_CATALYST:BOOL=OFF \
+	-D PARAVIEW_BUILD_PLUGIN_*=OFF \
         -D PARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=OFF \
         -D OPENGL_INCLUDE_DIR=/usr/include \
         -D OPENGL_gl_LIBRARY="" \
         -D OPENGL_glu_LIBRARY=/usr/lib/x86_64-linux-gnu/libGLU.so \
         -D VTK_USE_X:BOOL=OFF \
+	-D VTK_USE_TK:BOOL=OFF \
 	-D VTK_USE_OFFSCREEN:BOOL=ON \
 	-D VTK_USE_SYSTEM_PROTOBUF:BOOL=ON \
 	-D VTK_USE_SYSTEM_HDF5:BOOL=ON \

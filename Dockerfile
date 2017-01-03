@@ -7,12 +7,15 @@ RUN apt-get -q update && \
     curl git python python-dev make libosmesa6-dev libglu1-mesa-dev && \
     curl -s https://bootstrap.pypa.io/get-pip.py | python2
 
-RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev libxml2-dev zlib1g-dev libpugixml-dev libogg-dev libtheora-dev python-twisted python-autobahn expat libfreetype6-dev python-zope.interface libgl2ps-dev liblz4-dev libprotobuf-dev python-protobuf protobuf-compiler
+RUN apt-get -q -y install cmake libhdf5-dev libpng-dev libjpeg-dev libtiff5-dev libxml2-dev zlib1g-dev libpugixml-dev libogg-dev libtheora-dev python-twisted python-autobahn expat libfreetype6-dev python-zope.interface liblz4-dev libprotobuf-dev python-protobuf protobuf-compiler
 
+ENV PARAVIEW_VERSION=5.2.0 \
+    PARAVIEW_VERSHORT=5.2
+	
 # Compile 
 RUN mkdir -p /root/build && cd /root/build && \
-    curl "http://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v5.2&type=source&os=all&downloadFile=ParaView-v5.2.0.tar.gz" | tar xz && \
-    rm -R ParaView-v5.2.0/Plugins/* && \
+    curl "http://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v${PARAVIEW_VERSHORT}&type=source&os=all&downloadFile=ParaView-v${PARAVIEW_VERSION}.tar.gz" | tar xz && \
+    rm -R ParaView-v${PARAVIEW_VERSION}/Plugins/* && \
     mkdir -p /root/build/pv-bin && cd /root/build/pv-bin && \
     cmake \
         -D CMAKE_BUILD_TYPE=Release \
@@ -41,15 +44,15 @@ RUN mkdir -p /root/build && cd /root/build && \
 	-D VTK_USE_SYSTEM_FREETYPE:BOOL=ON \
 	-D VTK_USE_SYSTEM_TWISTED:BOOL=ON \
         -D VTK_USE_SYSTEM_AUTOBAHN:BOOL=ON \
-	-D VTK_USE_SYSTEM_GL2PS:BOOL=ON \
+	-D VTK_USE_SYSTEM_GL2PS:BOOL=OFF \
 	-D VTK_USE_SYSTEM_EXPAT:BOOL=ON \
 	-D VTK_USE_SYSTEM_ZOPE:BOOL=ON \
         -D VTK_OPENGL_HAS_OSMESA:BOOL=ON \
         -D OSMESA_INCLUDE_DIR=/usr/include \
         -D OSMESA_LIBRARY=/usr/lib/x86_64-linux-gnu/libOSMesa.so \
-        ../ParaView-v5.2.0 && \
+        ../ParaView-v${PARAVIEW_VERSION} && \
     make -j4 && make install && \
-    rm -rf ParaView-v5.2.0 && rm -rf /root/build
+    rm -rf ParaView-v${PARAVIEW_VERSION} && rm -rf /root/build
     
 # Proxy
 RUN apt-get -q -y install nginx

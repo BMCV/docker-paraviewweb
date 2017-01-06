@@ -6,8 +6,8 @@ ENV PATH /miniconda/bin:$PATH
 
 RUN apt-get update && apt-get install -y wget bzip2 && \
 	wget -q http://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh && \
-	bash Miniconda3-latest-Linux-x86_64.sh -p /miniconda -b && \
-	rm Miniconda3-latest-Linux-x86_64.sh && \
+	bash Miniconda2-latest-Linux-x86_64.sh -p /miniconda -b && \
+	rm Miniconda2-latest-Linux-x86_64.sh && \
 	rm -rf /var/lib/apt/lists/* && \
 	apt-get purge -y wget && \
 	conda install paraview -c bioconda -c conda-forge -y

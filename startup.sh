@@ -2,19 +2,20 @@
 
 service nginx start
 
-if [ -z "$DATASET_HID" ]; then
-    pvpython /usr/local/lib/paraview/site-packages/paraview/web/pv_web_visualizer.py \
-        --content /usr/local/share/paraview-5.1/www \
-        --data-dir /input \
-        --save-data-dir /export \
-        --port 9777 \
-        --host 0.0.0.0
+if [ -z "$DATASET_HID" ]
+then
+    pvpython /usr/local/lib/node_modules/pvw-visualizer/server/pvw-visualizer.py \
+	--paraview $CONDA/lib/paraview-5.2/
+        --data /input \
+        --port 8777 \
+	--server-only
 else
-    /usr/lib/paraview/pvpython /usr/local/lib/paraview/site-packages/paraview/web/pv_web_visualizer.py \
-        --content /usr/local/share/paraview-5.1/www \
-        --data-dir /input \
-        --save-data-dir /export \
-        --port 9777 \
-        --host 0.0.0.0 \
+    pvpython /usr/local/lib/node_modules/pvw-visualizer/server/pvw-visualizer.py \
+	--paraview $CONDA/lib/paraview-5.2/
+        --data /input \
+        --port 8777 \
+	--server-only \
         --load-file $DATASET_HID
 fi
+
+libvtkPVServerManagerRendering-pv5.2.so

@@ -2,19 +2,24 @@ FROM nginx
 
 MAINTAINER Thomas Wollmann <thomas.wollmann@bioquant.uni-heidelberg.de>
 
-ENV PATH /miniconda/bin:$PATH
+ENV CONDA /miniconda/
+ENV PATH $CONDA/bin:$PATH
 
-RUN apt-get update && apt-get install -y wget bzip2 && \
+RUN apt-get update && apt-get install -y wget bzip2 npm nodejs-legacy && \
 	wget -q http://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh && \
 	bash Miniconda2-latest-Linux-x86_64.sh -p /miniconda -b && \
 	rm Miniconda2-latest-Linux-x86_64.sh && \
 	rm -rf /var/lib/apt/lists/* && \
 	apt-get purge -y wget && \
-	conda install paraview -c bioconda -c conda-forge -y
+	conda install paraview -c bioconda -c conda-forge -y && \
+        npm install -g pvw-visualizer
 
-ADD nginx.conf /etc/nginx/sites-available/paraviewweb
-RUN ln -s /etc/nginx/sites-available/paraviewweb /etc/nginx/sites-enabled/paraviewweb && \
-    rm /etc/nginx/sites-enabled/default
+RUN echo $CONDA/lib/paraview-5.2/ > /etc/ld.so.conf.d/paraview.conf && \
+    ldconfig && \
+    mkdir /usr/local/opt/ && \
+    mkdir /Applications
+
+ADD nginx.conf /etc/nginx/nginx.conf
 
 WORKDIR /input
 

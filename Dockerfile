@@ -6,7 +6,7 @@ ENV CONDA /miniconda/
 ENV PATH $CONDA/bin:$PATH
 
 RUN apt-get update && \
-    apt-get install -y wget bzip2 curl && \
+    apt-get install -y wget bzip2 curl gnupg2  && \
     wget -qO- https://deb.nodesource.com/setup_6.x | bash
     
 RUN     apt-get install -y nodejs && \

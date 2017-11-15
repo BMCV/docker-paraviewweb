@@ -5,7 +5,8 @@ MAINTAINER Thomas Wollmann <thomas.wollmann@bioquant.uni-heidelberg.de>
 ENV CONDA /miniconda/
 ENV PATH $CONDA/bin:$PATH
 
-RUN apt-get update && apt-get install -y wget bzip2 npm nodejs-legacy && \
+RUN apt-get update 
+RUN     apt-get install -y wget bzip2 npm nodejs-legacy && \
 	wget -q http://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh && \
 	bash Miniconda2-latest-Linux-x86_64.sh -p /miniconda -b && \
 	rm Miniconda2-latest-Linux-x86_64.sh && \

@@ -5,8 +5,11 @@ MAINTAINER Thomas Wollmann <thomas.wollmann@bioquant.uni-heidelberg.de>
 ENV CONDA /miniconda/
 ENV PATH $CONDA/bin:$PATH
 
-RUN apt-get update && curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-RUN     apt-get install -y wget bzip2 nodejs && \
+RUN apt-get update && \
+    apt-get install -y wget bzip2 curl && \
+    curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+    
+RUN     apt-get install -y nodejs && \
 	wget -q http://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh && \
 	bash Miniconda2-latest-Linux-x86_64.sh -p /miniconda -b && \
 	rm Miniconda2-latest-Linux-x86_64.sh && \

@@ -11,8 +11,13 @@ RUN apt-get update && apt-get install -y wget bzip2 npm nodejs-legacy && \
 	rm Miniconda2-latest-Linux-x86_64.sh && \
 	rm -rf /var/lib/apt/lists/* && \
 	apt-get purge -y wget && \
-	conda install paraview -c bioconda -c conda-forge -y && \
-        npm install -g pvw-visualizer
+	echo "export PATH=\"$CONDA/bin:\$PATH\"" >> ~/.bash_rc && \
+	echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/miniconda/lib/paraview-5.2  >> ~/.bash_rc && \
+	source ~/.bash_rc
+
+
+RUN conda install paraview -c bioconda -c conda-forge -y && \
+    npm install -g pvw-visualizer
 
 RUN echo $CONDA/lib/paraview-5.2/ > /etc/ld.so.conf.d/paraview.conf && \
     ldconfig && \

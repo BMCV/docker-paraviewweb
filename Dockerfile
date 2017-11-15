@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y wget bzip2 npm nodejs-legacy && \
 	rm -rf /var/lib/apt/lists/* && \
 	apt-get purge -y wget && \
 	echo "export PATH=\"$CONDA/bin:\$PATH\"" >> ~/.bash_rc && \
-	echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/miniconda/lib/paraview-5.2  >> ~/.bash_rc && \
+	echo "export LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH:/miniconda/lib/paraview-5.2\""  >> ~/.bash_rc && \
 	source ~/.bash_rc
 
 

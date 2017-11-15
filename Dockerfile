@@ -7,7 +7,7 @@ ENV PATH $CONDA/bin:$PATH
 
 RUN apt-get update && \
     apt-get install -y wget bzip2 curl && \
-    curl -sL https://deb.nodesource.com/setup_6.x | sh
+    wget -qO- https://deb.nodesource.com/setup_6.x | sh
     
 RUN     apt-get install -y nodejs && \
 	wget -q http://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh && \

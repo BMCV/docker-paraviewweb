@@ -16,8 +16,8 @@ RUN apt-get update && apt-get install -y wget bzip2 npm nodejs-legacy && \
 	source ~/.bash_rc
 
 
-RUN conda install paraview -c bioconda -c conda-forge -y && \
-    npm install -g pvw-visualizer
+RUN conda install paraview==5.4.1 -c bioconda -c conda-forge -y && \
+    npm install -g pvw-visualizer@2.0.18
 
 RUN echo $CONDA/lib/paraview-5.2/ > /etc/ld.so.conf.d/paraview.conf && \
     ldconfig && \

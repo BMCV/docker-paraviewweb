@@ -16,13 +16,13 @@ RUN     apt-get install -y nodejs && \
 	rm -rf /var/lib/apt/lists/* && \
 	apt-get purge -y wget && \
 	echo "export PATH=\"$CONDA/bin:\$PATH\"" >> ~/.bash_rc && \
-	echo "export LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH:/miniconda/lib/paraview-5.2\""  >> ~/.bash_rc && \
-	echo "export PARAVIEW_HOME=\"$CONDA/bin\"" >> ~/.bash_rc
+	echo "export LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH:/miniconda/lib/paraview-5.4\""  >> ~/.bash_rc && \
+	echo "export PARAVIEW_HOME=\"/miniconda/bin\"" >> ~/.bash_rc
 
 RUN conda install paraview==5.4.1 -c bioconda -c conda-forge -y && \
-    npm install -g pvw-visualizer@2.0.18
+    npm install -g pvw-visualizer@2.2.0
 
-RUN echo $CONDA/lib/paraview-5.2/ > /etc/ld.so.conf.d/paraview.conf && \
+RUN echo $CONDA/lib/paraview-5.4/ > /etc/ld.so.conf.d/paraview.conf && \
     ldconfig && \
     mkdir /usr/local/opt/ && \
     mkdir /Applications

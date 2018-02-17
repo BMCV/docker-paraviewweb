@@ -9,12 +9,12 @@ then
     Visualizer --paraview /usr/local/lib/paraview-$PV_VERSION_MAJOR/ \
         --data /input \
         --port 9777 \
-	--server-only
+        --server-only
 else
     Visualizer --paraview /usr/local/lib/paraview-$PV_VERSION_MAJOR/ \
         --data /input \
         --port 9777 \
-	--server-only \
+        --server-only \
         --load-file $DATASET_HID
 fi
 

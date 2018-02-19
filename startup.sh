@@ -2,7 +2,7 @@
 
 service nginx start
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/paraview-$PV_VERSION_MAJOR/
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/paraview-$PV_VERSION_MAJOR/:/usr/local/lib/
 
 if [ -z "$DATASET_HID" ]
 then

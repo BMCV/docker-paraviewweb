@@ -2,7 +2,7 @@ FROM nginx
 
 MAINTAINER Thomas Wollmann <thomas.wollmann@bioquant.uni-heidelberg.de>
 
-RUN apt-get update && apt-get install -y wget bzip2 npm nodejs-legacy
+RUN apt-get update && apt-get install -y wget bzip2
 
 ENV PV_VERSION=5.4.0 \
     PV_VERSION_MAJOR=5.4 \
@@ -87,7 +87,8 @@ RUN mkdir -p /root/build && cd /root/build && \
     make -j4 && make install && \
     cd / && rm -rf /root/build
 
-RUN npm install -g pvw-visualizer@$VIZ_VERSION && \
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && apt-get -q -y install nodejs && \
+    npm install -g pvw-visualizer@$VIZ_VERSION && \
     mkdir /usr/local/opt/ && \
     mkdir /Applications
 
